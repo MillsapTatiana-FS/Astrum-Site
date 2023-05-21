@@ -15,7 +15,19 @@ export const urlFor = (source) => builder.image(source);
 
 // uses GROQ to query content: https://www.sanity.io/docs/groq
 
-const products = await client
-    .fetch('*[_type == "product"]');
+export const products = await client
+    .fetch('*[_type == "product"]')
     .then(products => products)
     .catch(err => console.error(err));
+
+export const bannerData = await client
+    .fetch('*[_type == "banner"]')
+    .then(bannerData => bannerData)
+    .catch(err => console.error(err));
+
+// return {
+//     props: {
+//         products,
+//         bannerData,
+//     },
+

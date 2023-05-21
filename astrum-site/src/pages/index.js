@@ -2,8 +2,8 @@ import React from 'react';
 import { client } from '@/lib/client';
 import { Product, FooterBanner, HeroBanner } from '@/components';
 
-const Home = () => {
-  return (
+const Home = ({ products, bannerData }) => (
+  
     <div>
       <HeroBanner />
 
@@ -14,14 +14,14 @@ const Home = () => {
       </div>
 
       <div className="products-container">
-        {['Product 1', 'Product 2', 'Product 3'].map((product) => product)}
+        {products?.map((product) => product.name)}
       </div>
 
       <FooterBanner />
 
     </div>
   );
-}
+
 
 export const getServerSideProps = async () => {
   const products = await client.fetch('*[_type == "product"]');
