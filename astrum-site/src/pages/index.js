@@ -1,19 +1,22 @@
 import React from 'react';
+import { Product, FooterBanner, HeroBanner } from '@/components';
 
 const Home = () => {
   return (
     <>
-      HeroBanner
+      <HeroBanner />
 
 
-      <div>
+      <div className="products-heading">
         <h2>Best Selling Crystals</h2>
         <p>Beauties of many variations</p>
       </div>
 
-      <div>
-        ['Product 1', 'Product 2', 'Product 3'].map(())
+      <div className="products-container">
+        {['Product 1', 'Product 2', 'Product 3'].map((product) => product)}
       </div>
+
+      <FooterBanner />
 
     </>
   )
