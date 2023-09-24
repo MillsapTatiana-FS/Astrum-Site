@@ -14,7 +14,7 @@ const Home = ({ products, bannerData }) => (
       </div>
 
       <div className="products-container">
-        {products?.map((product) => product.name)}
+        {products.map((product) => product.name)}
       </div>
 
       <FooterBanner />
@@ -24,12 +24,22 @@ const Home = ({ products, bannerData }) => (
 
 
 export const getServerSideProps = async () => {
-  const products = await client.fetch('*[_type == "product"]');
-  return {
+  const products = await client
+    .fetch('*[_type == "product"]')
+    .then(product => products)
+    .catch(err => console.error(err));
+
+  const bannerData = await client
+    .fetch('*[_type == "banner"]')
+    .then(bannerData => bannerData)
+    .catch(err => console.error(err));
+
+return {
     props: {
-      products,
-    },
-  };
-};
+        products,
+        bannerData,
+    }
+  }
+}
 
 export default Home;
